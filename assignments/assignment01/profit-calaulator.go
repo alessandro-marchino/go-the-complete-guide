@@ -3,28 +3,26 @@ package main
 import "fmt"
 
 func main() {
-	var revenue float64
-	fmt.Print("Enter revenue: ")
-	fmt.Scan(&revenue)
+	revenue := getUserInput("Enter revenue: ")
+	expenses := getUserInput("Enter expenses: ")
+	taxRate := getUserInput("Enter tar rate: ")
 
-	var expenses float64
-	fmt.Print("Enter expenses: ")
-	fmt.Scan(&expenses)
+	earningsBeforeTax, earningsAfterTax, ratio := calculateFinancials(revenue, expenses, taxRate)
 
-	var taxRate float64
-	fmt.Print("Enter tar rate: ")
-	fmt.Scan(&taxRate)
+	fmt.Printf("Earnings Before Tax: %.2f\n", earningsBeforeTax)
+	fmt.Printf("Earnings After Tax: %.2f\n", earningsAfterTax)
+	fmt.Printf("Ratio: %.3f\n", ratio)
+}
 
-	earningsBeforeTax := revenue - expenses
-	earningsAfterTax := earningsBeforeTax * (1 - taxRate / 100)
-	ratio := earningsBeforeTax / earningsAfterTax
+func getUserInput(message string) (res float64) {
+	fmt.Print(message)
+	fmt.Scan(&res)
+	return res
+}
 
-	fmt.Print("Earnings Before Tax: ")
-	fmt.Println(earningsBeforeTax)
-
-	fmt.Print("Earnings After Tax: ")
-	fmt.Println(earningsAfterTax)
-
-	fmt.Print("Ratio: ")
-	fmt.Println(ratio)
+func calculateFinancials(revenue, expenses, taxRate float64) (ebt, eat, ratio float64) {
+	ebt = revenue - expenses
+	eat = ebt * (1 - taxRate / 100)
+	ratio = ebt / eat
+	return ebt, eat, ratio
 }
