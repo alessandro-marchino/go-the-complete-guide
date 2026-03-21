@@ -30,6 +30,8 @@ func main() {
 		fmt.Scan(&withdrawnAmount)
 		accountBalance -= withdrawnAmount
 		fmt.Printf("Balance updated|\nour balance is %.2f\n", accountBalance)
+	} else {
+		fmt.Println("Goodbye!")
 	}
 
 }
