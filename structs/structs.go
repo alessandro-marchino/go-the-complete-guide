@@ -8,6 +8,10 @@ func main() {
 	birthdate := getUserData("Please enter your birthdate (DD/MM/YYYY): ")
 
 	// Do something awasome with that gathered data!
+	outputUserDetails(firstName, lastName, birthdate)
+}
+
+func outputUserDetails(firstName, lastName, birthdate string) {
 	fmt.Println(firstName, lastName, birthdate)
 }
 
