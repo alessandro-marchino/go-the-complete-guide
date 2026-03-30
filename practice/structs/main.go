@@ -1,36 +1,28 @@
 package main
 
 import (
-	"errors"
 	"fmt"
+
+	"example.com/practice/structs/note"
 )
 
 func main() {
-	title, content, err := getNodeData()
+	title, content := getNodeData()
+	note, err := note.New(title, content)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 }
 
-func getNodeData() (title string, content string, err error) {
-	title, err = getUserInput("Note title:")
-	if err != nil {
-		return "", "", err
-	}
-	content, err = getUserInput("Note content:")
-	if err != nil {
-		return "", "", err
-	}
-	return title, content, nil
+func getNodeData() (title, content string) {
+	title = getUserInput("Note title:")
+	content = getUserInput("Note content:")
+	return title, content
 }
 
-func getUserInput(prompt string) (value string, err error) {
+func getUserInput(prompt string) (value string) {
 	fmt.Print(prompt)
 	fmt.Scanln(&value)
-
-	if value == "" {
-		return "", errors.New("Invalid input")
-	}
-	return value, nil
+	return value
 }
