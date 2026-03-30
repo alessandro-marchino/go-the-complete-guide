@@ -6,8 +6,6 @@ import (
 	"example.com/structs/user"
 )
 
-
-
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
 	userLastName := getUserData("Please enter your last name: ")
@@ -24,6 +22,9 @@ func main() {
 
 	appUser.ClearUserName()
 	appUser.OutputUserDetails()
+
+	admin := user.NewAdmin("test@example.com", "password")
+	admin.OutputUserDetails()
 
 }
 
