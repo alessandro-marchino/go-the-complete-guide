@@ -13,11 +13,12 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+	note.Display()
 }
 
 func getNodeData() (title, content string) {
-	title = getUserInput("Note title:")
-	content = getUserInput("Note content:")
+	title = getUserInput("Note title: ")
+	content = getUserInput("Note content: ")
 	return title, content
 }
 
