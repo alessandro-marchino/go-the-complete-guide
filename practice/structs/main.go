@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"example.com/practice/structs/note"
+	"example.com/practice/structs/todo"
 )
 
 func main() {
@@ -24,12 +25,30 @@ func main() {
 		return
 	}
 	fmt.Println("Saving the note succeeded")
+
+	todoText := getTodoData()
+	todo, err := todo.New(todoText)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	todo.Display()
+	err = todo.Save()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("Saving the todo succeeded")
 }
 
 func getNodeData() (title, content string) {
 	title = getUserInput("Note title:")
 	content = getUserInput("Note content:")
 	return title, content
+}
+
+func getTodoData() string {
+	return getUserInput("Todo text:")
 }
 
 func getUserInput(prompt string) (value string) {
