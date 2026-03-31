@@ -17,6 +17,13 @@ func main() {
 		return
 	}
 	note.Display()
+
+	err = note.Save()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("Saving the note succeeded")
 }
 
 func getNodeData() (title, content string) {
