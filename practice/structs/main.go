@@ -40,6 +40,11 @@ func main() {
 	if err != nil {
 		return
 	}
+
+	printSomething(1)
+	printSomething(1.5)
+	printSomething("Hello")
+	printSomething(note)
 }
 
 func outputData(data outputtable) error {
@@ -56,7 +61,14 @@ func saveData(data saver) error {
 	return nil
 }
 func printSomething(value interface{}) {
-	fmt.Println(value)
+	switch value.(type) {
+	case int:
+		fmt.Println("Integer:", value)
+	case float64:
+		fmt.Println("Float:", value)
+	case string:
+		fmt.Println("String:", value)
+	}
 }
 
 func getNodeData() (title, content string) {
