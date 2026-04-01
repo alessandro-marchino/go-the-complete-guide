@@ -60,7 +60,12 @@ func saveData(data saver) error {
 	}
 	return nil
 }
-func printSomething(value interface{}) {
+func printSomething(value any) {
+	typedValue, ok := value.(int)
+	if ok {
+		fmt.Println("Typed value:", typedValue)
+	}
+
 	switch value.(type) {
 	case int:
 		fmt.Println("Integer:", value)
