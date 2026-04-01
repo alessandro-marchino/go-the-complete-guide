@@ -55,6 +55,9 @@ func saveData(data saver) error {
 	}
 	return nil
 }
+func printSomething(value interface{}) {
+	fmt.Println(value)
+}
 
 func getNodeData() (title, content string) {
 	title = getUserInput("Note title:")
