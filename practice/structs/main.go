@@ -10,6 +10,10 @@ import (
 	"example.com/practice/structs/todo"
 )
 
+type saver interface {
+	Save() error
+}
+
 func main() {
 	title, content := getNodeData()
 	note, err := note.New(title, content)
