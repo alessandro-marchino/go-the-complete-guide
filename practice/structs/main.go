@@ -45,6 +45,10 @@ func main() {
 	printSomething(1.5)
 	printSomething("Hello")
 	printSomething(note)
+
+	fmt.Println("add(1, 2)", add(1, 2))
+	fmt.Println("add(1.0, 2.0)", add(1.0, 2.0))
+	fmt.Println("add(\"1\", \"2\")", add("1", "2"))
 }
 
 func outputData(data outputtable) error {
@@ -98,4 +102,8 @@ func getUserInput(prompt string) (value string) {
 	text = strings.TrimSuffix(text, "\n")
 	value = strings.TrimSuffix(text, "\r")
 	return value
+}
+
+func add[T int|float64|string](a, b T) T {
+	return a + b
 }
