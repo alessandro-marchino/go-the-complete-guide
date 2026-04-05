@@ -10,4 +10,7 @@ func main() {
 	var productNames [4]string = [4]string{"A Book"}
 	productNames[2] = "A Carpet"
 	fmt.Println(productNames)
+
+	featuredPrices := prices[1:3]
+	fmt.Println(featuredPrices)
 }
