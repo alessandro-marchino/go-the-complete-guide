@@ -19,4 +19,11 @@ func main() {
 	fmt.Println(prices[1:])
 
 	fmt.Println(len(featuredPrices), cap(featuredPrices))
+
+	dynPrices := []float64{10.99, 8.99}
+	fmt.Println(dynPrices[0:1])
+
+	updatedDynPrices:= append(dynPrices, 10.99, 5.99)
+	fmt.Println(dynPrices)
+	fmt.Println(updatedDynPrices)
 }
