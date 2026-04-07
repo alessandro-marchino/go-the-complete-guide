@@ -26,4 +26,9 @@ func main() {
 	updatedDynPrices:= append(dynPrices, 10.99, 5.99)
 	fmt.Println(dynPrices)
 	fmt.Println(updatedDynPrices)
+
+	newPrices := []float64 {10.99, 9.99, 5.99, 12.99, 29.99, 100.10}
+	discountPrices := []float64 {101.99, 80.99, 20.59}
+	newPrices = append(newPrices, discountPrices...)
+	fmt.Println(newPrices)
 }
