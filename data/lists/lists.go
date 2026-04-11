@@ -31,4 +31,11 @@ func main() {
 	discountPrices := []float64 {101.99, 80.99, 20.59}
 	newPrices = append(newPrices, discountPrices...)
 	fmt.Println(newPrices)
+
+	userNames := make([]string, 2, 5)
+	userNames[0] = "Julie"
+	userNames = append(userNames, "Max")
+	userNames = append(userNames, "Manuel")
+	fmt.Println(userNames)
+
 }
