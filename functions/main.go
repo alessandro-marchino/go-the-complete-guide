@@ -17,6 +17,9 @@ func main() {
 	transformedNumbers2 := transformNumbers(&moreNumbers, getTransformerFunction(&moreNumbers))
 	fmt.Println(transformedNumbers1)
 	fmt.Println(transformedNumbers2)
+
+	transformed := transformNumbers(&numbers, func(num int) int { return num * 2 })
+	fmt.Println(transformed)
 }
 
 func transformNumbers(numbers *[]int, transform transformFn) (dNumbers []int) {
