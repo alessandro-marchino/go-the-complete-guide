@@ -20,6 +20,9 @@ func main() {
 
 	transformed := transformNumbers(&numbers, func(num int) int { return num * 2 })
 	fmt.Println(transformed)
+
+	transformed2 := transformNumbers(&numbers, createTransformer(5))
+	fmt.Println(transformed2)
 }
 
 func transformNumbers(numbers *[]int, transform transformFn) (dNumbers []int) {
@@ -42,4 +45,10 @@ func getTransformerFunction(numbers *[]int) transformFn {
 		return double
 	}
 	return triple
+}
+
+func createTransformer(factor int) func(int) int {
+	return func(num int) int {
+		return num * factor
+	}
 }
