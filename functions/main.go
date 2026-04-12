@@ -11,6 +11,12 @@ func main() {
 
 	tripled := transformNumbers(&numbers, triple)
 	fmt.Println(tripled)
+
+	moreNumbers := []int{5, 1, 2}
+	transformedNumbers1 := transformNumbers(&numbers, getTransformerFunction(&numbers))
+	transformedNumbers2 := transformNumbers(&moreNumbers, getTransformerFunction(&moreNumbers))
+	fmt.Println(transformedNumbers1)
+	fmt.Println(transformedNumbers2)
 }
 
 func transformNumbers(numbers *[]int, transform transformFn) (dNumbers []int) {
@@ -26,4 +32,11 @@ func double(number int) int {
 
 func triple(number int) int {
 	return number * 3
+}
+
+func getTransformerFunction(numbers *[]int) transformFn {
+	if (*numbers)[0] == 1 {
+		return double
+	}
+	return triple
 }
