@@ -27,4 +27,8 @@ func main() {
 	courseRatings["react"] = 4.8
 	courseRatings["angular"] = 4.7
 	courseRatings.output()
+
+	for key, value := range courseRatings {
+		fmt.Printf("Key: %s, value: %v\n", key, value)
+	}
 }

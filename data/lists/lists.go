@@ -38,4 +38,7 @@ func main() {
 	userNames = append(userNames, "Manuel")
 	fmt.Println(userNames)
 
+	for index, value := range userNames {
+		fmt.Printf("Index: %d, value: %s\n", index, value)
+	}
 }
