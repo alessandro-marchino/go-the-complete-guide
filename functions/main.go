@@ -28,6 +28,7 @@ func main() {
 	fmt.Println("Factorial of 5 is", fact)
 
 	fmt.Println("Sumup", sumup(1, 2, 3, 4))
+	fmt.Println("Sumup", sumup(1, numbers...))
 }
 
 func transformNumbers(numbers *[]int, transform transformFn) (dNumbers []int) {
