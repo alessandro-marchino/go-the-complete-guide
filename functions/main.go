@@ -23,6 +23,9 @@ func main() {
 
 	transformed2 := transformNumbers(&numbers, createTransformer(5))
 	fmt.Println(transformed2)
+
+	fact := factorial(5)
+	fmt.Println("Factorial of 5 is", fact)
 }
 
 func transformNumbers(numbers *[]int, transform transformFn) (dNumbers []int) {
@@ -51,4 +54,11 @@ func createTransformer(factor int) func(int) int {
 	return func(num int) int {
 		return num * factor
 	}
+}
+
+func factorial(number int) int {
+	if number <= 1 {
+		return 1
+	}
+	return number * factorial(number - 1)
 }
