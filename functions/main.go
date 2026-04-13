@@ -26,6 +26,8 @@ func main() {
 
 	fact := factorial(5)
 	fmt.Println("Factorial of 5 is", fact)
+
+	fmt.Println("Sumup", sumup(1, 2, 3, 4))
 }
 
 func transformNumbers(numbers *[]int, transform transformFn) (dNumbers []int) {
@@ -61,4 +63,12 @@ func factorial(number int) int {
 		return 1
 	}
 	return number * factorial(number - 1)
+}
+
+func sumup(startingValue int, numbers ...int) int {
+	sum := startingValue
+	for _, val := range numbers {
+		sum += val
+	}
+	return sum
 }
