@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 
-	"example.com/price_calculator/cmdmanager"
 	"example.com/price_calculator/filemanager"
 	"example.com/price_calculator/prices"
 )
@@ -13,9 +12,12 @@ func main() {
 
 	for _, taxRate := range taxRates {
 		fm := filemanager.New("prices.txt", fmt.Sprintf("result_%.0f.json", taxRate * 100))
-		cmdm := cmdmanager.New()
-		priceJob := prices.NewTaxIncludedPriceJob(fm, taxRate)
-		priceJob.Process()
+		priceJobFM := prices.NewTaxIncludedPriceJob(fm, taxRate)
+		priceJobFM.Process()
+
+		// cmdm := cmdmanager.New()
+		// priceJobCM := prices.NewTaxIncludedPriceJob(cmdm, taxRate)
+		// priceJobCM.Process()
 	}
 
 }
