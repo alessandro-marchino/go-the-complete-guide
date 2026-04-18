@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"os"
+	"time"
 )
 
 type FileManager struct {
@@ -37,6 +38,7 @@ func (fm *FileManager) ReadLines() ([]string, error) {
 	if err != nil {
 		return nil, errors.New("Failed to read line in file")
 	}
+
 	return lines, nil
 }
 
@@ -45,6 +47,7 @@ func (fm *FileManager) WriteResult(data any) error {
 	if err != nil {
 		return errors.New("Failed to create file")
 	}
+	time.Sleep(3 * time.Second)
 	encoder := json.NewEncoder(file)
 	err = encoder.Encode(data)
 	if err != nil {
