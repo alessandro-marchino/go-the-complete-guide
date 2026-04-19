@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"example.com/rest_api/models"
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,11 +11,26 @@ func main() {
 	server := gin.Default()
 
 	server.GET("/events", getEvents)
+	server.POST("/events", createEvent)
 
 	// Listen on localhost:8080
 	server.Run(":8080")
 }
 
 func getEvents(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{ "message": "Hello!" })
+	events := models.GetAllEvents()
+	ctx.JSON(http.StatusOK, events)
+}
+
+func createEvent(ctx *gin.Context) {
+	var event models.Event
+	err := ctx.ShouldBindJSON(&event)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{ "message": "Could not parse request data" })
+		return
+	}
+	event.ID = 1
+	event.UserID = 1
+
+	ctx.JSON(http.StatusCreated, gin.H{ "message": "Event created!", "event": event })
 }
