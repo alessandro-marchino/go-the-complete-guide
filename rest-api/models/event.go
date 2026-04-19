@@ -15,8 +15,6 @@ type Event struct {
 	UserID int `json:"-"`
 }
 
-var events = []Event {}
-
 func (e *Event) Save() error {
 	query := `
 	INSERT INTO events (name, description, location, date_time, user_id)
@@ -58,4 +56,16 @@ func GetAllEvents() ([]Event, error) {
 	}
 
 	return events, nil
+}
+
+func GetEventById(id int64) (*Event, error) {
+	query := "SELECT id, name, description, location, date_time, user_id FROM events WHERE id = ?"
+	row := db.DB.QueryRow(query, id)
+
+	var event Event
+	err := row.Scan(&event.ID, &event.Name, &event.Description, &event.Location, &event.DateTime, &event.UserID)
+	if err != nil {
+		return nil, err
+	}
+	return &event, nil
 }
