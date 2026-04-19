@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"example.com/rest_api/models"
+	"example.com/rest_api/utils"
 	"github.com/gin-gonic/gin"
 )
 
@@ -38,5 +39,11 @@ func login(ctx *gin.Context) {
 		ctx.JSON(http.StatusUnauthorized, gin.H{ "message": "Could not authenticate user" })
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{ "message": "Login successful" })
+	token, err := utils.GenerateToken(user.Email, user.ID)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{ "message": "Could not authenticate user" })
+		return
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{ "message": "Login successful", "token": token })
 }
