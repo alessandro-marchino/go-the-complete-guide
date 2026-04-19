@@ -17,6 +17,7 @@ func getEvents(ctx *gin.Context) {
 	}
 	ctx.JSON(http.StatusOK, events)
 }
+
 func getEvent(ctx *gin.Context) {
 	eventId, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 	if err != nil {
@@ -47,4 +48,23 @@ func createEvent(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusCreated, gin.H{ "message": "Event created!", "event": event })
+}
+
+func updateEvent(ctx *gin.Context) {
+	eventId, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{ "message": "Could not parse event id" })
+		return
+	}
+	_, err = models.GetEventById(eventId)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{ "message": "Could not fetch event" })
+		return
+	}
+	var updatedEvent models.Event
+	err = ctx.ShouldBindJSON(&updatedEvent)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{ "message": "Could not parse request data" })
+		return
+	}
 }
