@@ -18,6 +18,6 @@ func Authenticate(ctx *gin.Context) {
 		ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{ "message": "Not authorized" })
 		return
 	}
-
+	ctx.Set("userId", userId)
 	ctx.Next()
 }
